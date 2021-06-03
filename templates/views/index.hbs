@@ -1,25 +1,81 @@
 <html>
+  <head>
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <style>
+    .fcc-btn {
+    background-color:blueviolet;
+    color: white;
+    padding: 10px 15px;
+    border-style: solid;
+    border-radius: 5px;
+}
+  </style>
+  </head>
   <title>
    Friday Lattice Talks
   </title>
   <body style="background-color:powderblue;">
-    <div >
-        <h2>Lattice Friday Talks</h2>
-        <div>
-                <form action="/fetchdata" method="POST">
-                
-                <input type="text" name="text" placeholder="Title" required>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+
+                  <h2>Lattice Friday Talks</h2>
+                  <div>
+                        <form action="/fetchdata" method="POST">
+                        
+                        <input type="text" name="text" placeholder="Title" required>
+                        <br>
+                        <br>
+                        <textarea name="description" placeholder="Type your Description" required></textarea>
+                        <br>
+                        <br>
+                        <select class="form-input align-center" name="assignee" required="required">
+                          <option value="none">--- Select An Assignee ---</option>                          
+                          {{#each assigns }}
+                              <option value={{login}}>{{login}}</option>
+                          {{/each}}
+                      </select>
+                      <br><br>
+                        
+                        <button type="submit">Create An Issue</button>
+                        
+                      </form>
+
+                      <br><br>
+                      <a href="/"  class="fcc-btn"><font size="5" color="black">Refresh</font></a>
+                  </div>
+            </div>
+            <div class="col-sm-8">
+              <center>
                 <br>
-                <br>
-                <textarea name="description" placeholder="Type your Description" required></textarea>
-                <br>
-                <br>
-               
-                <button type="submit">Create An Issue</button>
-               
-          </form>
-           </div>
+                <table border="1" >
+                  <tr>
+                      <th>Issue Title</th>
+                      <th>Issue Description</th>
+                  </tr>
+                  
+                {{#each result }}
+                  <tr>
+                      <td>{{title}}</td>
+                      <td>{{description}}</td>
+                  </tr>
+                {{/each}}
+                  
+              </table>
+            </center>
+            </div>
         </div>
+    </div>
+
+
+
+    <div >
+        
+      </div>
     
   </body>
 </html>
